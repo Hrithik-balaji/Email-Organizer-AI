@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Email Organizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .slide-in { animation: slideIn 0.5s ease-out forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-8">
+    
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-12 border-b border-slate-700 pb-6">
+            <div>
+                <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    AI Email Organizer
+                </h1>
+                <p class="text-slate-400 mt-2">Intelligent Inbox Prioritization System</p>
+            </div>
+            
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <select id="sortSelect" class="bg-slate-800 border border-slate-600 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition">
+                    <option value="score">Sort by Priority (High → Low)</option>
+                    <option value="sender">Sort by Sender (A-Z)</option>
+                </select>
+                <button id="resetBtn" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg border border-slate-600 transition">
+        Reset View
+    </button>
+                <button id="analyzeBtn" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-2 rounded-lg shadow-lg hover:shadow-blue-500/20 transition-all transform hover:scale-105">
+                    Analyze Inbox
+                </button>
+            </div>
+            
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-1 space-y-6">
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl">
+                    <h3 class="text-xl font-bold mb-4 text-slate-300">Analysis Summary</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-red-400 font-semibold">High Priority</span>
+                            <span id="countHigh" class="bg-red-900 text-red-300 px-3 py-1 rounded-full text-xs font-bold">0</span>
+                        </div>
+                        <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+                            <div id="barHigh" class="bg-red-500 h-full w-0 transition-all duration-1000"></div>
+                        </div>
+
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-yellow-400 font-semibold">Medium Priority</span>
+                            <span id="countMed" class="bg-yellow-900 text-yellow-300 px-3 py-1 rounded-full text-xs font-bold">0</span>
+                        </div>
+                        <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+                            <div id="barMed" class="bg-yellow-500 h-full w-0 transition-all duration-1000"></div>
+                        </div>
+
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-green-400 font-semibold">Low Priority</span>
+                            <span id="countLow" class="bg-green-900 text-green-300 px-3 py-1 rounded-full text-xs font-bold">0</span>
+                        </div>
+                        <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+                            <div id="barLow" class="bg-green-500 h-full w-0 transition-all duration-1000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <div id="emailList" class="space-y-4">
+                    <div class="text-center py-20 text-slate-500 border-2 border-dashed border-slate-700 rounded-xl">
+                        <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <p class="text-lg">Inbox is waiting for analysis.</p>
+                        <p class="text-sm">Click the blue button to start.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
